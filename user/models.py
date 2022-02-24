@@ -71,6 +71,7 @@ class Doctor(models.Model):
         ('married', 'Married'),
     )
     status = models.CharField(max_length=30, choices=marital_status)
+   
 
     # def save(self):
     #     encodedString = base64.b64encode(self.image.file.read())
@@ -101,6 +102,7 @@ class Customuser(AbstractUser, PermissionsMixin):
         ('female', 'Female'),
     )
     gender = models.CharField(max_length=30, choices=GENDER_CHOICES, null=True)
+    isdocor=models.BooleanField(null=True)
     # guardian = models.CharField(max_length=20,null=True)
     # Guardian_choices = (
     #     ('first degree', 'First Degree'),
