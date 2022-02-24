@@ -45,6 +45,7 @@ class CustomUserManager(BaseUserManager):
 class Doctor(models.Model):
     id = models.AutoField(primary_key=True)
     fullname = models.CharField(max_length=50)
+    experience=models.IntegerField(default='1')
     username = models.CharField(max_length=20)
     email = models.EmailField(max_length=50)
     image = models.ImageField(upload_to=f'images/{uuid.uuid4()}', blank=True)
@@ -193,6 +194,8 @@ class DoctorAppointment(models.Model):
 
 
 class Comment(models.Model):
+    id = models.AutoField(primary_key=True)
     patient_id = models.ForeignKey(Customuser, on_delete=models.CASCADE)
     doctor_id = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     comment_description = models.TextField(blank=True, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
