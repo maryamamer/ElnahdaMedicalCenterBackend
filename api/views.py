@@ -5,6 +5,7 @@ from user.models import *
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -20,8 +21,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Add custom claims
         token['email'] = user.email
         # token['email'] = Customuser.email
-        # token['is_superuser'] = Customuser.is_superuser
-        # token['is_staff'] = Customuser.is_staff
+        token['is_superuser'] = Customuser.is_superuser
+        token['is_staff'] = Customuser.is_staff
         # print(token['username'])
         
         # ...
