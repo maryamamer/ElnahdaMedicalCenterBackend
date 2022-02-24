@@ -11,9 +11,6 @@ from django.contrib.auth.base_user import BaseUserManager
 class CustomUserManager(BaseUserManager):
 
     def _create_user(self, email, password,**extra_fields):
-        """
-        Create and save a User with the given email and password.
-        """
         if not email:
             raise ValueError("The given email must be set")
         email = self.normalize_email(email)
@@ -119,9 +116,8 @@ class Customuser(AbstractUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
 
-    def __str__(self):
-        return self.fullname
 
     # id=models.AutoField(primary_key=True)
     # comment = models.CharField(max_length=250,null=True)
