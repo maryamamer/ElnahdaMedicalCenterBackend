@@ -131,7 +131,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ElNahda_center',
         'USER': 'postgres',
-        'PASSWORD': '2051999',
+
+        'PASSWORD': 'root',
+
         'HOST': 'localhost',
         'PORT': '5432',
     }
