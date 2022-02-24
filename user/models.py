@@ -82,7 +82,8 @@ class Doctor(models.Model):
 
 
 class Customuser(AbstractUser, PermissionsMixin):
-    username = models.CharField(max_length=50)
+    username = models.CharField(max_length=50,unique=True)
+    fullname =models.CharField(max_length=50)
     email = models.EmailField("email address", unique=True)
     report = models.FileField(upload_to='uploads/% Y/% m/% d/', null=True)
     phone_regex = RegexValidator(
@@ -106,8 +107,8 @@ class Customuser(AbstractUser, PermissionsMixin):
     #     ('second degree', 'Second Degree'),
     # )
     # guardian_relation = models.CharField(max_length=30, choices=Guardian_choices)
-    USERNAME_FIELD = "email"  # make the user log in with the email
-    REQUIRED_FIELDS = ["username"]
+    USERNAME_FIELD = "username" # make the user log in with the email
+    # REQUIRED_FIELDS = ["username"]
 
     objects = CustomUserManager()
 
@@ -116,6 +117,9 @@ class Customuser(AbstractUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+    def __str__(self):
+        return self.fullname
 
     # id=models.AutoField(primary_key=True)
     # comment = models.CharField(max_length=250,null=True)
