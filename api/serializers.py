@@ -6,7 +6,8 @@ class Userser(serializers.ModelSerializer):
     class Meta:
         model = Customuser
 
-        fields = ('id','username','email','phone','date_of_birth','report','address','gender','age')
+        # fields ='__all__'
+        exclude=('groups','user_permissions')
 
         extra_kwargs ={
             'password':{'write_only':True}

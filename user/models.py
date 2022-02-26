@@ -80,6 +80,7 @@ class Doctor(models.Model):
 
 
 class Customuser(AbstractUser, PermissionsMixin):
+    id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=50,unique=True)
     fullname =models.CharField(max_length=50)
     email = models.EmailField("email address", unique=True)
@@ -89,7 +90,6 @@ class Customuser(AbstractUser, PermissionsMixin):
     phone = models.CharField(verbose_name="phone", null=True, validators=[
                              phone_regex], max_length=14)
     date_of_birth = models.DateField(null=True)
-    record_number = models.TextField(null=True)
     address = models.TextField(null=True)
     age = models.IntegerField(null=True)
     image = models.ImageField(upload_to=f'images/{uuid.uuid4()}', blank=True)
@@ -99,13 +99,12 @@ class Customuser(AbstractUser, PermissionsMixin):
         ('female', 'Female'),
     )
     gender = models.CharField(max_length=30, choices=GENDER_CHOICES, null=True)
-    isdocor=models.BooleanField(null=True)
-    # guardian = models.CharField(max_length=20,null=True)
-    # Guardian_choices = (
-    #     ('first degree', 'First Degree'),
-    #     ('second degree', 'Second Degree'),
-    # )
-    # guardian_relation = models.CharField(max_length=30, choices=Guardian_choices)
+    guardian_number = models.CharField(max_length=20,null=True)
+    Guardian_choices = (
+        ('first degree', 'First Degree'),
+        ('second degree', 'Second Degree'),
+    )
+    guardian_relation = models.CharField(max_length=30, choices=Guardian_choices,null=True)
     USERNAME_FIELD = "username" # make the user log in with the email
     # REQUIRED_FIELDS = ["username"]
 
