@@ -30,6 +30,7 @@ router.register(r'doctors', Doctor_view, 'Doctor')
 router.register(r'Appointments', Appointment_view, 'Appointment')
 router.register(r'Departments', Department_View, 'Department')
 router.register(r'Comments', Comment_view, 'Comment')
+router.register(r'Doctorapps', Doctorapp_View, 'DoctorApp')
 
 
 

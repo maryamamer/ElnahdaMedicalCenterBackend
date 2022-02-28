@@ -46,6 +46,10 @@ class Appointment_view(viewsets.ModelViewSet):
     serializer_class = Appointmentser
     queryset = Appointment.objects.all()
     
+class Doctorapp_View(viewsets.ModelViewSet):
+    serializer_class = DoctorAppser
+    queryset = DoctorApp.objects.all()
+    
 class Department_View(viewsets.ModelViewSet):
     serializer_class = Departmentser
     queryset = Department.objects.all()
