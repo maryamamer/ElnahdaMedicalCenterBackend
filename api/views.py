@@ -2,6 +2,8 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import *
 from user.models import *
+from Doctors.models import *
+from Departments.models import *
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -44,13 +46,10 @@ class Appointment_view(viewsets.ModelViewSet):
     serializer_class = Appointmentser
     queryset = Appointment.objects.all()
     
-class PatientAppointment_view(viewsets.ModelViewSet):
-    serializer_class = PatientAppointmentser
-    queryset = PatientAppointment.objects.all() 
-    
-class DoctorAppointment_view(viewsets.ModelViewSet):
-    serializer_class = DoctorAppointmentser
-    queryset = DoctorAppointment.objects.all()  
+class Department_View(viewsets.ModelViewSet):
+    serializer_class = Departmentser
+    queryset = Department.objects.all()
+
     
 class Comment_view(viewsets.ModelViewSet):
     serializer_class = Commentser

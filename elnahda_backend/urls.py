@@ -28,8 +28,7 @@ router=routers.DefaultRouter()
 router.register(r'users', User_view, 'Customuser')
 router.register(r'doctors', Doctor_view, 'Doctor')
 router.register(r'Appointments', Appointment_view, 'Appointment')
-router.register(r'PatientAppointments', PatientAppointment_view, 'PatientAppointment')
-router.register(r'DoctorAppointments', DoctorAppointment_view, 'DoctorAppointment')
+router.register(r'Departments', Department_View, 'Department')
 router.register(r'Comments', Comment_view, 'Comment')
 
 
@@ -42,6 +41,7 @@ urlpatterns = [
     path('api/',include(urls)),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+    path('auth/', include('djoser.social.urls')),
     
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
