@@ -33,6 +33,11 @@ class Departmentser(serializers.ModelSerializer):
         model = Department
         fields = '__all__'
         
+class DoctorAppser(serializers.ModelSerializer):
+    class Meta:
+        model = DoctorApp
+        fields = '__all__'
+        
 
 
 class Commentser(serializers.ModelSerializer):
