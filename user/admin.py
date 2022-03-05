@@ -7,8 +7,8 @@ admin.site.register(Doctor)
 
 class CustomUserAdmin(UserAdmin):
     model = Customuser
-    list_display = ['id','email','phone','date_of_birth','report','address','age','gender','fullname']
-    fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('phone','date_of_birth','report','address','age','gender','fullname')}),
+    list_display = ['id','username','email','phone','date_of_birth','address','age','gender','fullname']
+    fieldsets = UserAdmin.fieldsets + ((None, {'fields': ('phone','date_of_birth','address','age','gender','fullname')}),
 )
 
 admin.site.register(Customuser, CustomUserAdmin)
