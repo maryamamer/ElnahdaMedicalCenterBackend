@@ -36,7 +36,26 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 class User_view(viewsets.ModelViewSet):
     serializer_class = Userser
-    queryset = Customuser.objects.all()
+    # queryset = Customuser.objects.all()
+    
+    def get_queryset(self):
+        user=Customuser.objects.all()
+        return user
+  
+    def create(self, request,*args,**kwargs):
+        data=request.data
+        new_user=Customuser.objects.create(username=data['username'],password=data['password'],email=data['email'],fullname=data['fullname'],gender=data['gender'],
+        phone=data['phone'],address=data['address'],age=data['age'],date_of_birth=data['date_of_birth'],guardian_relation=data['guardian_relation'],guardian_number=data['guardian_number'])
+        new_user.save()
+        for doctor in data['doctors']:
+            doctor_obj=Doctor.objects.get(id=doctor['id'])
+            new_user.doctors.add(doctor_obj)
+        serializer=Userser(new_user)
+        return Response(serializer.data)
+        
+   
+
+
     
 class Doctor_view(viewsets.ModelViewSet):
     serializer_class = Doctorser
@@ -53,7 +72,10 @@ class Doctorapp_View(viewsets.ModelViewSet):
 class Department_View(viewsets.ModelViewSet):
     serializer_class = Departmentser
     queryset = Department.objects.all()
-
+    
+class UserProfile_View(viewsets.ModelViewSet):
+    serializer_class=UserProfileSer
+    queryset=Customuser.objects.all()
     
 class Comment_view(viewsets.ModelViewSet):
     serializer_class = Commentser

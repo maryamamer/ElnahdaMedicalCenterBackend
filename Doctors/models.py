@@ -27,15 +27,15 @@ class Doctor(models.Model):
         ('male', 'Male'),
         ('female', 'Female'),
     )
-    gender = models.CharField(max_length=30, choices=GENDER_CHOICES)
-    education_degree = models.CharField(max_length=30, null=False)
-    specialization = models.CharField(max_length=50, null=False)
+    gender = models.CharField(max_length=30, choices=GENDER_CHOICES,null=True)
+    education_degree = models.CharField(max_length=30, null=True)
+    specialization = models.CharField(max_length=50, null=True)
     achievements = models.TextField(null=True)
     marital_status = (
         ('single', 'Single'),
         ('married', 'Married'),
     )
-    status = models.CharField(max_length=30, choices=marital_status)
+    status = models.CharField(max_length=30, choices=marital_status,null=True)
     is_superuser=models.BooleanField(null=True)
     dept_id=models.ForeignKey(Department,null=True,on_delete=models.CASCADE)
     patient_number=models.IntegerField(null=True)

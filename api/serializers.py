@@ -7,10 +7,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-class Userser(UserCreateSerializer):
-    class Meta(UserCreateSerializer.Meta):
-        model = User
-        fields=('username','email','password','fullname','image','report','date_of_birth','is_superuser','is_active','last_login','date_joined','age','address','is_staff','id','phone','doctor_id','gender','guardian_number','guardian_relation')
+
         # exclude=('groups','user_permissions')
 
         # extra_kwargs ={
@@ -22,6 +19,14 @@ class Doctorser(serializers.ModelSerializer):
         model = Doctor
         fields = '__all__'
         
+class Userser(serializers.ModelSerializer):
+    class Meta:
+        model = Customuser
+        fields=('id','username','email','password','fullname','image','date_of_birth','age','address','phone','doctors','gender','guardian_number','guardian_relation') 
+        depth=1 
+    
+    
+    
 
 class Appointmentser(serializers.ModelSerializer):
     class Meta:
@@ -44,3 +49,8 @@ class Commentser(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
+        
+class UserProfileSer(serializers.ModelSerializer):
+    class Meta:
+        model = Customuser
+        fields=('fullname','email','phone','address')
